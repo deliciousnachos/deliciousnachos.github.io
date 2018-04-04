@@ -25,23 +25,54 @@ $smallButton.click(function() {
 
 /**************************** Make Detail Pages */
 
-// var circles = []
-// var makeDetails = 
 
-$.getJSON('scripts/circles.json', function(data) {
-    console.log(data); //  show the circles in console
+// set up empty circle array //
+var circleArray = [];
+
+// parse JSON, push into array //
+
+var allCircles = $.getJSON('scripts/circles.json', function(data) {
+  circleArray.push(data.circles);
+  return circleArray;
+}); 
+
+console.log(circleArray);
+
+
+// filter down to a one item array (?) //
+var singleCircle = circleArray.filter(function(element) {
+  if (element.circleID === "01-001") {
+    console.log(element);
+  // return true;
+  // } else {
+  // return false;
+  }
+});
+console.log(singleCircle);
+
+// make vars for element IDs on overlay 
+var circleName = ('#circleName');
+var circleDescription = ('#circleDescription');
+var artDetail = ('#artDetail');
+var circleYear = ('#circleYear');
+var imageURL = ('#imageURL');
+
+
+var makePage = circleArray.forEach(function(element) {
+  var makeTitle = circles.circleName.appendTo('#circleName').text(element.circleName);
+  var makeDescription = circles.circleDescription.appendTo('#circleDescription').text(element.circleDescription);
+  var artDetail = circles.artDetail.appendTo('#artDetail').text(element.artDetail);
+  var circleYear = circles.circleYear.appendTo('#circleYear').text(element.circleYear);
+  var makeImage = circles.imageURL.appendTo('.detail-image').attr('src', element.imageURL);
 });
 
-// fetch('scripts/circles.json')
-//   .then(function(circleStuff) {
-//     return circleStuff.json()
-//   })
-//   .then(function(circleStuffinJSON) {
-//     console.log(circleStuffinJSON);
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//   })
+
+
+
+
+
+
+
 
 
 
